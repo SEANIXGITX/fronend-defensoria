@@ -1,0 +1,101 @@
+{
+  "data": {
+    "username": "Pperez",
+    "nombre": "Pepe",
+    "apellido": "Perez",
+    "rol": "admin",
+    "menu": [
+      {
+        "icon": "dashboard",
+        "label": "Dashboard",
+        "separator": true,
+        "to": "/solicitudes"
+      },
+      {
+        "icon": "restore",
+        "label": "Solicitudes",
+        "separator": false,
+        "to": "/solicitudes"
+      },
+      {
+        "icon": "topic",
+        "label": "Descargados",
+        "separator": false,
+        "to": "/solicitudes"
+      },
+      {
+        "icon": "find_in_page",
+        "label": "Reportes ADMI",
+        "separator": false,
+        "to": "/solicitudes"
+      },
+      {
+        "icon": "description",
+        "label": "Reportes Plani",
+        "separator": false,
+        "to": "/solicitudes"
+      },
+      {
+        "icon": "schema",
+        "label": "Flujos",
+        "separator": false,
+        "to": "/solicitudes"
+      },
+      {
+        "icon": "handyman",
+        "label": "Herramientas",
+        "separator": false,
+        "to": "/solicitudes"
+      },
+      {
+        "icon": "grid_view",
+        "label": "ABC",
+        "separator": false,
+        "to": "/solicitudes"
+      },
+      {
+        "icon": "help",
+        "label": "Ayuda",
+        "separator": false,
+        "to": "/solicitudes"
+      }
+    ]
+  },
+  "tiposSolicitud": [
+    {
+      "id": 1,
+      "descripcion": "Bienes y Servicios",
+      "sigla": "BS",
+      "estado": 1,
+      "activo": true
+    },
+    {
+      "id": 2,
+      "descripcion": "Pasajes y Viáticos",
+      "sigla": "PV",
+      "estado": 1,
+      "activo": true
+    },
+    {
+      "id": 3,
+      "descripcion": "Fondos en Avance",
+      "sigla": "FA",
+      "estado": 1,
+      "activo": true
+    },
+    {
+      "id": 3,
+      "descripcion": "prueba2",
+      "sigla": "FA",
+      "estado": 1,
+      "activo": true
+    },
+    {
+      "id": 3,
+      "descripcion": "prueba3",
+      "sigla": "FA",
+      "estado": 1,
+      "activo": false
+    }
+  ]
+}
