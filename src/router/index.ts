@@ -23,9 +23,9 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('../views/private/solicitudes/RequestList.vue'),
       },
       {
-        path: '/planificacion',
-        alias: '/planificacion',
-        name: 'planificacion',
+        path: '/programas',
+        alias: '/programas',
+        name: 'programas',
         component: () => import('../views/private/planificacion/Planificacion.vue'),
       },
     ],
