@@ -3,11 +3,19 @@
         @hide="onDialogHide">
 
         <q-card class="q-dialog-plugin">
-            <p class="text-center q-mt-sm">
-                Crear
-                nuevo
-                Programa
-            </p>
+            <div>
+                <p
+                    class="row justify-between text-center q-px-sm q-mt-sm text-h6">
+                    Objtico Estrategico
+                    Institucional
+                    <span
+                        class="column text-subtitle2"
+                        style="line-height: 1;">
+                        <span>Gestión</span>
+                        <span>2023</span>
+                    </span>
+                </p>
+            </div>
             <q-form
                 @submit.prevent.stop="guardarPrograma"
                 @reset.prevent.stop="limpiarFormulario">
@@ -15,6 +23,7 @@
                     class="row items-center q-col-gutter-md justify-center">
                     <q-select class="col-6"
                         square filled
+                        v-if="selectGestiones"
                         v-model="gestion"
                         :options="gestiones"
                         option-label="descripcion"
@@ -22,6 +31,7 @@
                         @update:model-value="selectGestion">
                     </q-select>
                     <q-input disable
+                        v-if="selectGestiones"
                         class="col-6"
                         label="Código" />
                     <q-input class="col-12"
@@ -33,6 +43,20 @@
                         @keyup.enter.stop
                         lazy-rules
                         :rules="[val => !!val || 'Escriba una descripción']" />
+                    <q-select class="col-6"
+                        square filled
+                        v-model="indicador"
+                        :options="indicadores"
+                        option-label="descripcion"
+                        label="Indicador">
+                    </q-select>
+                    <q-select class="col-6"
+                        square filled
+                        v-model="responsable"
+                        :options="responsables"
+                        option-label="nombre"
+                        label="Responsable">
+                    </q-select>
                     <q-input class="col-12"
                         v-model="metaTotal"
                         label="Meta total"
@@ -57,7 +81,7 @@
                         label="Cancelar"
                         @click="onDialogCancel" />
                 </q-card-actions>
-                <!-- {{ calculoGestion.num }} -->
+                {{ responsables }}
             </q-form>
         </q-card>
     </q-dialog>
@@ -67,6 +91,9 @@
 import { useDialogPluginComponent } from 'quasar';
 import { ref, computed, onMounted } from 'vue'
 import axios from 'axios';
+import usePlanificacionStore from '../../store/Planificacion.ts';
+
+const planificacionStore = usePlanificacionStore();
 
 // variables
 const gestion = ref();
@@ -75,6 +102,11 @@ const descripcion = ref('');
 const metaTotal = ref('');
 const numInputs = ref({});
 const inputValores = ref([]);
+const selectGestiones = ref(false);
+const indicadores = ref(planificacionStore.indicadores);
+const indicador = ref();
+const responsables = ref(planificacionStore.responsables);
+const responsable = ref();
 
 
 // functions
@@ -148,10 +180,17 @@ const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } = useDialogPluginC
 // }
 const guardarPrograma = async () => {
     //obteniendo datos
+    // const programa = {
+    //     reformulacionId: 2,
+    //     gestionId: 2,
+    //     codigo: 10,
+    //     descripcion: descripcion.value,
+    //     metaGlobalPlaneada: parseInt(metaTotal.value, 10)
+    // };
     const programa = {
-        reformulacionId: 10,
-        gestionId: 2,
-        codigo: 10,
+        reformulacionId: 2,
+        gestionId: gestion.value,
+        codigo: 20,
         descripcion: descripcion.value,
         metaGlobalPlaneada: parseInt(metaTotal.value, 10)
     };
@@ -188,4 +227,7 @@ function limpiarFormulario() {
 
 </script>
 <style scope>
+textarea {
+    height: 80px;
+}
 </style>

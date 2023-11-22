@@ -18,7 +18,7 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: '/solicitudDetalle/:id',
-        alias: '/solicitudDetalle',
+        alias: '/solicitudDetalle/:id',
         name: 'solicitudDetalle',
         component: () => import('../views/private/solicitudes/RequestList.vue'),
       },

@@ -4,7 +4,6 @@
     <div class="">
         <q-form
             class="row items-center q-col-gutter-md">
-            <!-- buscador y botones -->
             <q-input outlined
                 v-model="searchText"
                 placeholder="Buscar..."
@@ -20,25 +19,38 @@
             </q-input>
             <div
                 class="col-4 q-px-sm justify-end">
-                <q-btn label="crear"
+                <q-btn label="Crear"
                     color="primary"
                     @click="crearPrograma"></q-btn>
                 <q-btn
-                    label="ponderar"></q-btn>
+                    label="Ponderar"></q-btn>
             </div>
         </q-form>
-        <!-- tabla -->
+        <!-- {{ planificacionStore.indicadores }} -->
+        <!-- {{ prueba }} -->
+        <!-- {{ planificacionStore }} -->
         <tablaProgramas />
     </div>
 </template>
   
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import axios  from "axios";
 import { useQuasar } from 'quasar'
 import tablaProgramas from '../../../components/planificacion/tabla.vue';
 import modalCrear from '../../../components/planificacion/modalCrear.vue';
+import usePlanificacionStore from '../../../store/Planificacion.ts';
 
+const planificacionStore = usePlanificacionStore();
 const $q = useQuasar()
+
+// hooks
+onMounted(async () => {
+  await planificacionStore.obtenerIndicadores();
+  await planificacionStore.obtenerResponsables();
+});
+
+// variables
 const searchText = '';
 const programas = ref([]);
 const columns = [
@@ -48,8 +60,7 @@ const columns = [
     { name: 'Acciones', align: 'right', label: 'Acciónes', sortable: false },
 ];
 
-const tipoGestion = ref('');
-
+// functions
 function performSearch() {
     // Implementa aquí la lógica de búsqueda
     console.log('Realizando búsqueda:', searchText.value);
